@@ -16,35 +16,60 @@ public class snakeLadder {
 
     public int roll_dice(){
         Random rand_num = new Random();
-        int dice_val =  rand_num.nextInt(6) + 1; // 1-6
-        return dice_val;
+        return rand_num.nextInt(6) + 1; // 1-6
+         
     }
 
     public void movePlayer(int steps){
         int newPos = initial_pos + steps;
         
-        int dice_val = roll_dice();
         for(int snakePosition : snake_pos){
             if(newPos == snakePosition){
-                System.out.printf("SNAKE BITE!!! Going reverse by ",+ dice_val+" steps");
-                newPos -= dice_val;
+                System.out.println("Snake position "+snakePosition);
+                System.out.printf("SNAKE BITE!!! Going reverse by ", + steps+" steps");
+                initial_pos =newPos-steps;
                 return;
             }
         }
 
         for(int ladderPosition : ladder_pos){
             if(newPos == ladderPosition){
-                System.out.printf("GOT A LADDER!!!Climbing up to ",+ dice_val+ " steps");
-                newPos += dice_val;
+                System.out.println("Ladder position "+ladderPosition);
+                System.out.printf("GOT A LADDER!!!Climbing up to ",+ steps+ " steps");
+                initial_pos = newPos + steps;
                 return;
             }
         }
-        initial_pos = newPos;
+        //initial_pos= newPos;
+        if(newPos <0){
+            initial_pos =0;
+        }else{
+            initial_pos= newPos;
+        }
+        System.out.println("YOUR UPDATED POSITION IS : "+ newPos);
+    }
 
+    public void playGame(){
+        while (initial_pos<board_size) {
+            int diceVal = roll_dice();
+            System.out.println("You rolled a " + diceVal);
+
+            movePlayer(diceVal);
+            System.out.println("\nYour current position is "+ initial_pos);
+
+            try {
+                Thread.sleep(1000); // Pause 
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }           
+
+        }
     }
     public static void main(String[] args) {
         System.out.println("WELCOME TO SNAKE LADDER GAME");
-        //snakeLadder sl= new snakeLadder();
+        snakeLadder sl= new snakeLadder();
+        sl.playGame();
+        System.out.println("Congratulations! Player reached the end of the board!");
         
     }
 }
