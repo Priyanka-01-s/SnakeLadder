@@ -9,7 +9,7 @@ public class snakeLadder {
     private static final int[] ladder_pos ={3,11,19,30,37,45,54,66,71,78};
 
     int initial_pos =0;
-
+    int diceRoll =0;
     public snakeLadder() {//initial pos =0
         this.initial_pos = 0;
     }
@@ -57,6 +57,7 @@ public class snakeLadder {
     public void playGame(){
         while (initial_pos<board_size) {
             int diceVal = roll_dice();
+            diceRoll++;
             System.out.println("You rolled a " + diceVal);
 
             movePlayer(diceVal);
@@ -69,6 +70,7 @@ public class snakeLadder {
             }           
 
         }
+        System.out.println("The number of times dice is thrown "+diceRoll);
     }
     public static void main(String[] args) {
         System.out.println("WELCOME TO SNAKE LADDER GAME");
