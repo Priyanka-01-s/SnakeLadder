@@ -19,6 +19,29 @@ public class snakeLadder {
         int dice_val =  rand_num.nextInt(6) + 1; // 1-6
         return dice_val;
     }
+
+    public void movePlayer(int steps){
+        int newPos = initial_pos + steps;
+        
+        int dice_val = roll_dice();
+        for(int snakePosition : snake_pos){
+            if(newPos == snakePosition){
+                System.out.printf("SNAKE BITE!!! Going reverse by ",+ dice_val+" steps");
+                newPos -= dice_val;
+                return;
+            }
+        }
+
+        for(int ladderPosition : ladder_pos){
+            if(newPos == ladderPosition){
+                System.out.printf("GOT A LADDER!!!Climbing up to ",+ dice_val+ " steps");
+                newPos += dice_val;
+                return;
+            }
+        }
+        initial_pos = newPos;
+
+    }
     public static void main(String[] args) {
         System.out.println("WELCOME TO SNAKE LADDER GAME");
         //snakeLadder sl= new snakeLadder();
