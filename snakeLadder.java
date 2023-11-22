@@ -1,5 +1,7 @@
 package Assgn3_ladder;
 
+import java.util.Random;
+
 public class snakeLadder {
 
     private static final int board_size = 100;
@@ -10,6 +12,12 @@ public class snakeLadder {
 
     public snakeLadder() {//initial pos =0
         this.initial_pos = 0;
+    }
+
+    public int roll_dice(){
+        Random rand_num = new Random();
+        int dice_val =  rand_num.nextInt(6) + 1; // 1-6
+        return dice_val;
     }
     public static void main(String[] args) {
         System.out.println("WELCOME TO SNAKE LADDER GAME");
