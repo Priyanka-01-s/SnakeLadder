@@ -43,10 +43,15 @@ public class snakeLadder {
         //initial_pos= newPos;
         if(newPos <0){
             initial_pos =0;
+        }
+        else if(newPos > board_size) {
+            initial_pos = newPos-steps;
         }else{
             initial_pos= newPos;
         }
         System.out.println("YOUR UPDATED POSITION IS : "+ newPos);
+
+        
     }
 
     public void playGame(){
